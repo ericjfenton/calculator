@@ -3,6 +3,19 @@ let entry1, entry2, operation;
 const display = document.querySelector('p');
 const buttons = document.querySelectorAll('button');
 
+// function for adding numbers - test how it looks
+const addNum = function(str1) {
+    if (display.innerText === '0') {
+        entry1 = str1;
+    }
+    else {
+        if (entry1.length < 16) {
+        entry1 += str1;
+        }
+    }
+    display.innerText = entry1;
+}
+
 // entry function for responding to buttons
 const buttonResponse = function(e) {
     let btnType = e.target.className;
@@ -10,7 +23,10 @@ const buttonResponse = function(e) {
         let str1 = e.target.innerText;
         switch (str1) {
             case 'Clear':
-                display.innerText = 'clear it';
+                entry1 = undefined;
+                entry2 = undefined;
+                operation = undefined;
+                display.innerText = '0';
                 break;
             case 'Backspace':
                 display.innerText = 'back it up';
@@ -19,43 +35,43 @@ const buttonResponse = function(e) {
                 display.innerText = 'divide';
                 break;
             case '7':
-                display.innerText = 'seven';
+                addNum('7');
                 break;
             case '8':
-                display.innerText = 'eight';
+                addNum('8');
                 break;
             case '9':
-                display.innerText = 'nine';
+                addNum('9');
                 break;
             case 'x':
                 display.innerText = 'multiply';
                 break;
             case '4':
-                display.innerText = 'four';
+                addNum('4');
                 break;
             case '5':
-                display.innerText = 'five';
+                addNum('5');
                 break;
             case '6':
-                display.innerText = 'six';
+                addNum('6');
                 break;
             case '-':
                 display.innerText = 'minus';
                 break;
             case '1':
-                display.innerText = 'one';
+                addNum('1');
                 break;
             case '2':
-                display.innerText = 'two';
+                addNum('2');
                 break;
             case '3':
-                display.innerText = 'three';
+                addNum('3');
                 break;
             case '+':
                 display.innerText = 'plus';
                 break;
             case '0':
-                display.innerText = 'zero';
+                addNum('0');
                 break;
             case '.':
                 display.innerText = 'decimal';

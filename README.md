@@ -23,16 +23,16 @@ Test driven development. Add features and handle edge cases one
        (text.slice(0,-1))
 7a. Backspace key deletes last digit. No change if 0 is displayed. Passed
 8. Entry of "1 + 1 =" results in output of 2. Passed
-9. Entry of "2 - 1 =" results in output of 1. Fail
-10. Entry of "1 - 2 =" results in output of -1. Fail
+9. Entry of "2 - 1 =" results in output of 1. Passed
+10. Entry of "1 - 2 =" results in output of -1. Passed
 11. Addition of very large numbers results in "overflow" in display. Passed
 12. Entry of "2 x 3" results in output of 6. Fail
-13. Multiplication of very large numbers results in "overflow." Fail
-14. Entry of "6 / 2" results in 3. Fail
-15. Entry of "6 / 0" results in "Error" (short message that fits). Fail
+13. Multiplication of very large numbers results in "overflow." Passed
+14. Entry of "6 / 2" results in 3. Passed
+15. Entry of "6 / 0" results in "Error" (short message that fits). Passed
 16. Program includes method to truncate display for screen
-       (for division). Fail
-17. Entry of "7 / 3" results in 1.33333333333 fitting in display. Fail
+       (for division). Passed (answer.slice(0,16))
+17. Entry of "7 / 3" results in 2.33333333333 fitting in display. Passed
 18. Checks without entering first number, starting from initial 0:
 18a. "+ 1" displays 1. Fail
 18b. "- 1" displays -1. Fail

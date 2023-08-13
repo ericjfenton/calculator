@@ -24,8 +24,6 @@ const addNum = function(str1) {
         }
     }
     display.innerText = displayNum;
-    console.log(displayNum);
-    console.log(typeof displayNum);
 }
 
 // reset function for errors
@@ -41,9 +39,10 @@ const operate = function() {
     if (!storedNum || !displayNum || !operation) {
         return;
     }
+    let answer;
     switch (operation) {
         case '+':
-            let answer = (+storedNum + +displayNum).toString();
+            answer = (+storedNum + +displayNum).toString();
             // if overflow, say so and reset
             if (answer.length > 16) {
                 display.innerText = 'Overflow';
@@ -54,6 +53,46 @@ const operate = function() {
             reset();
             storedNum = answer; // setup for another operation
             break;
+
+        case '-':
+            answer = (+storedNum - +displayNum).toString();
+            if (answer.length > 16) {
+                display.innerText = 'Overflow';
+                reset();
+                break;
+                }
+            display.innerText = answer;
+            reset();
+            storedNum = answer;
+            break;
+
+        case 'x':
+            answer = (+storedNum * +displayNum).toString();
+            if (answer.length > 16) {
+                display.innerText = 'Overflow';
+                reset();
+                break;
+                }
+            display.innerText = answer;
+            reset();
+            storedNum = answer;
+            break;
+
+        case '/':
+            if (displayNum === '0') {
+                display.innerText = 'Divide by 0 error';
+                reset();
+                break;
+            } 
+            answer = (+storedNum / +displayNum).toString();
+            if (answer.length > 16) {
+                answer = answer.slice(0,16);
+                }
+            display.innerText = answer;
+            reset();
+            storedNum = answer;
+            break;
+
         default:
             display.innerText = 'oops';
     }
@@ -91,7 +130,7 @@ const buttonResponse = function(e) {
                 displayNum = display.innerText;
                 break;
             case '/':
-                display.innerText = 'divide';
+                addOperator(str1);
                 break;
             case '7':
                 addNum('7');
@@ -103,7 +142,7 @@ const buttonResponse = function(e) {
                 addNum('9');
                 break;
             case 'x':
-                display.innerText = 'multiply';
+                addOperator(str1);
                 break;
             case '4':
                 addNum('4');
@@ -115,7 +154,7 @@ const buttonResponse = function(e) {
                 addNum('6');
                 break;
             case '-':
-                display.innerText = 'minus';
+                addOperator(str1);
                 break;
             case '1':
                 addNum('1');

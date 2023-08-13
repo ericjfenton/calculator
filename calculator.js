@@ -1,19 +1,25 @@
 // define variables
-let entry1, entry2, operation;
+let displayNum = '0';
+let storedNum, operation;
 const display = document.querySelector('p');
 const buttons = document.querySelectorAll('button');
+
+// use toString() to change numbers to string
+// numbers with commas not recognized as numbers
 
 // function for adding numbers - test how it looks
 const addNum = function(str1) {
     if (display.innerText === '0') {
-        entry1 = str1;
+        displayNum = str1;
     }
     else {
-        if (entry1.length < 16) {
-        entry1 += str1;
+        if (displayNum.length < 16) {
+        displayNum += str1;
         }
     }
-    display.innerText = entry1;
+    display.innerText = displayNum;
+    console.log(displayNum);
+    console.log(typeof displayNum);
 }
 
 // entry function for responding to buttons
@@ -23,13 +29,19 @@ const buttonResponse = function(e) {
         let str1 = e.target.innerText;
         switch (str1) {
             case 'Clear':
-                entry1 = undefined;
-                entry2 = undefined;
+                displayNum = '0';
+                storedNum = undefined;
                 operation = undefined;
                 display.innerText = '0';
                 break;
             case 'Backspace':
-                display.innerText = 'back it up';
+                if (display.innerText.length === 1) {
+                    display.innerText = '0';
+                    displayNum = display.innerText;
+                    break;
+                }
+                display.innerText = display.innerText.slice(0,-1);
+                displayNum = display.innerText;
                 break;
             case '/':
                 display.innerText = 'divide';

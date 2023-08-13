@@ -16,9 +16,10 @@ Test driven development. Add features and handle edge cases one
      digits. Additional digits are added to end. Display of
      commas or numbers with decimal not yet added. Passed
 5. Program includes method to convert string to number. Fail
-6. Program includes method to convert number to string. Fail
-7. Program includes method (for backspace) to delete last digit. Fail
-7a. Backspace key deletes last digit. No change if 0 is displayed. Fail
+6. Program includes method to convert number to string. Passed (toString())
+7. Program includes method (for backspace) to delete last digit. Passed
+       (text.slice(0,-1))
+7a. Backspace key deletes last digit. No change if 0 is displayed. Passed
 8. Entry of "1 + 1 =" results in output of 2. Fail
 9. Entry of "2 - 1 =" results in output of 1. Fail
 10. Entry of "1 - 2 =" results in output of -1. Fail

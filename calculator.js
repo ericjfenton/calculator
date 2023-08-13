@@ -100,6 +100,11 @@ const operate = function() {
 
 // function for entering operand
 const addOperator = function(op) {
+    if (operation && storedNum && displayNum) {
+        operate();
+        operation = op;
+        // storedNum and displayNum set to correct values by operate
+    }
     if (operation) {
         return; // don't double up operator
     }

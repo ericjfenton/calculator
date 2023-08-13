@@ -38,6 +38,7 @@ Test driven development. Add features and handle edge cases one
 18b. "- 1" displays -1. Fail
 18c. "x 2" displays 0. Fail
 18d. "/ 2" displays 0. Fail
+Note for 19: check status of basic variables after = or second number
 19. Add functionality of operators to act on last result. Starting from
      display of 2.
 19a. "+ 1" displays 3. Fail

@@ -7,8 +7,14 @@ const buttons = document.querySelectorAll('button');
 // use toString() to change numbers to string
 // numbers with commas not recognized as numbers
 
-// function for adding numbers - test how it looks
+// function for entering numbers
 const addNum = function(str1) {
+    // if second number, need to replace the display
+    if (displayNum === undefined) {
+        display.innerText = str1;
+        displayNum = str1;
+        return;
+    }
     if (display.innerText === '0') {
         displayNum = str1;
     }
@@ -20,6 +26,47 @@ const addNum = function(str1) {
     display.innerText = displayNum;
     console.log(displayNum);
     console.log(typeof displayNum);
+}
+
+// reset function for errors
+const reset = function() {
+    operation = undefined;
+    displayNum = undefined;
+    storedNum = undefined;
+}
+
+// function for operating on two numbers
+const operate = function() {
+    // do nothing if all elements not present
+    if (!storedNum || !displayNum || !operation) {
+        return;
+    }
+    switch (operation) {
+        case '+':
+            let answer = (+storedNum + +displayNum).toString();
+            // if overflow, say so and reset
+            if (answer.length > 16) {
+                display.innerText = 'Overflow';
+                reset();
+                break;
+            }
+            display.innerText = answer;
+            reset();
+            storedNum = answer; // setup for another operation
+            break;
+        default:
+            display.innerText = 'oops';
+    }
+}
+
+// function for entering operand
+const addOperator = function(op) {
+    if (operation) {
+        return; // don't double up operator
+    }
+    operation = op;
+    storedNum = displayNum;
+    displayNum = undefined; // clear the register but not the display
 }
 
 // entry function for responding to buttons
@@ -80,7 +127,7 @@ const buttonResponse = function(e) {
                 addNum('3');
                 break;
             case '+':
-                display.innerText = 'plus';
+                addOperator(str1);
                 break;
             case '0':
                 addNum('0');
@@ -89,7 +136,7 @@ const buttonResponse = function(e) {
                 display.innerText = 'decimal';
                 break;
             case '=':
-                display.innerText = 'Operate!';
+                operate();
                 break;
             
             default:

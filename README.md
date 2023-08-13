@@ -15,15 +15,17 @@ Test driven development. Add features and handle edge cases one
      zero for input of zero. Starting zero is replaced by other
      digits. Additional digits are added to end. Display of
      commas or numbers with decimal not yet added. Passed
-5. Program includes method to convert string to number. Fail
+5. Program includes method to convert string to number. Passed
+     (preceed with +, doesn't work with commas, works with
+       negatives and decimals)
 6. Program includes method to convert number to string. Passed (toString())
 7. Program includes method (for backspace) to delete last digit. Passed
        (text.slice(0,-1))
 7a. Backspace key deletes last digit. No change if 0 is displayed. Passed
-8. Entry of "1 + 1 =" results in output of 2. Fail
+8. Entry of "1 + 1 =" results in output of 2. Passed
 9. Entry of "2 - 1 =" results in output of 1. Fail
 10. Entry of "1 - 2 =" results in output of -1. Fail
-11. Addition of very large numbers results in "overflow" in display. Fail
+11. Addition of very large numbers results in "overflow" in display. Passed
 12. Entry of "2 x 3" results in output of 6. Fail
 13. Multiplication of very large numbers results in "overflow." Fail
 14. Entry of "6 / 2" results in 3. Fail
@@ -47,5 +49,5 @@ Test driven development. Add features and handle edge cases one
 22. Entry of "1234567" displays 1,234,567. Fail
 23. Entry of decimal displays in output area. Fail
 24. Second entry of decimal is ignored. Fail
-25. Entry of operators second time in a row is ignored. Fail
+25. Entry of operators second time in a row is ignored. Passed
 26. Entry of equals without two operands and operator is ignored. Fail

@@ -34,17 +34,17 @@ Test driven development. Add features and handle edge cases one
        (for division). Passed (answer.slice(0,16))
 17. Entry of "7 / 3" results in 2.33333333333 fitting in display. Passed
 18. Checks without entering first number, starting from initial 0:
-18a. "+ 1" displays 1. Fail
-18b. "- 1" displays -1. Fail
-18c. "x 2" displays 0. Fail
-18d. "/ 2" displays 0. Fail
+18a. "+ 1" displays 1. Pass
+18b. "- 1" displays -1. Pass
+18c. "x 2" displays 0. Pass
+18d. "/ 2" displays 0. Pass
 Note for 19: check status of basic variables after = or second number
 19. Add functionality of operators to act on last result. Starting from
-     display of 2.
-19a. "+ 1" displays 3. Fail
-19b. "- 1" displays 1. Fail
-19c. "x 2" display 4. Fail
-19d. "/ 2" displays 1. Fail
+     display of 2. Tests work for string of operations and after "="
+19a. "+ 1" displays 3. Pass
+19b. "- 1" displays 1. Pass
+19c. "x 2" display 4. Pass
+19d. "/ 2" displays 1. Pass
 20. Program includes method to display numbers over 999 with comma. Fail
 21. Entry of "1234" displays 1,234. Fail
 22. Entry of "1234567" displays 1,234,567. Fail

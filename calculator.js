@@ -9,13 +9,23 @@ const buttons = document.querySelectorAll('button');
 
 // function for entering numbers
 const addNum = function(str1) {
+    // don't add second decimal
+    if (str1 === '.' && display.innerText.includes('.')) {
+        return;
+    }
     // if second number, need to replace the display
     if (displayNum === undefined) {
+        if (str1 === '.') {
+            str1 = '0.';
+        }
         display.innerText = str1;
         displayNum = str1;
         return;
     }
     if (display.innerText === '0') {
+        if (str1 === '.') {
+            str1 = '0.';
+        }
         displayNum = str1;
     }
     else {
@@ -109,7 +119,9 @@ const addOperator = function(op) {
         return; // don't double up operator
     }
     operation = op;
+    if (!storedNum) {
     storedNum = displayNum;
+    }
     displayNum = undefined; // clear the register but not the display
 }
 
@@ -177,7 +189,7 @@ const buttonResponse = function(e) {
                 addNum('0');
                 break;
             case '.':
-                display.innerText = 'decimal';
+                addNum(str1);
                 break;
             case '=':
                 operate();

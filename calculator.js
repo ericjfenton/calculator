@@ -9,9 +9,15 @@ const buttons = document.querySelectorAll('button');
 
 // function for entering numbers
 const addNum = function(str1) {
+    // patch for entry after = (not good practice)
+    if (operation === undefined && displayNum === undefined) {
+        storedNum = undefined;
+    }
     // don't add second decimal
-    if (str1 === '.' && display.innerText.includes('.')) {
-        return;
+    if (str1 === '.' && displayNum !== undefined) {
+        if (displayNum.includes('.')) {
+            return;
+        }
     }
     // if second number, need to replace the display
     if (displayNum === undefined) {
@@ -66,11 +72,14 @@ const operate = function() {
 
         case '-':
             answer = (+storedNum - +displayNum).toString();
-            if (answer.length > 16) {
+            if (answer < -999999999999999) {
                 display.innerText = 'Overflow';
                 reset();
                 break;
                 }
+                if (answer.length > 16) {
+                    answer = answer.slice(0,16);
+                    }
             display.innerText = answer;
             reset();
             storedNum = answer;
@@ -78,11 +87,14 @@ const operate = function() {
 
         case 'x':
             answer = (+storedNum * +displayNum).toString();
-            if (answer.length > 16) {
+            if (answer > 9999999999999999 || answer < -999999999999999) {
                 display.innerText = 'Overflow';
                 reset();
                 break;
                 }
+                if (answer.length > 16) {
+                    answer = answer.slice(0,16);
+                    }
             display.innerText = answer;
             reset();
             storedNum = answer;
@@ -95,6 +107,11 @@ const operate = function() {
                 break;
             } 
             answer = (+storedNum / +displayNum).toString();
+            if (answer > 9999999999999999 || answer < -999999999999999) {
+                display.innerText = 'Overflow';
+                reset();
+                break;
+                }
             if (answer.length > 16) {
                 answer = answer.slice(0,16);
                 }

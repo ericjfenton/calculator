@@ -48,7 +48,7 @@ Note for 19: check status of basic variables after = or second number
 20. Program includes method to display numbers over 999 with comma. Fail
 21. Entry of "1234" displays 1,234. Fail
 22. Entry of "1234567" displays 1,234,567. Fail
-23. Entry of decimal displays in output area. Fail
-24. Second entry of decimal is ignored. Fail
+23. Entry of decimal displays in output area. Pass
+24. Second entry of decimal is ignored. Pass
 25. Entry of operators second time in a row is ignored. Passed
-26. Entry of equals without two operands and operator is ignored. Fail
+26. Entry of equals without two operands and operator is ignored. Pass

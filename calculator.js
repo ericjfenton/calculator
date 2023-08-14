@@ -155,6 +155,9 @@ const buttonResponse = function(e) {
                 display.innerText = '0';
                 break;
             case 'Backspace':
+                if (displayNum === undefined) {
+                    break;
+                }
                 if (display.innerText.length === 1) {
                     display.innerText = '0';
                     displayNum = display.innerText;

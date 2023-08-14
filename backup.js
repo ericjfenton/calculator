@@ -7,24 +7,8 @@ const buttons = document.querySelectorAll('button');
 // use toString() to change numbers to string
 // numbers with commas not recognized as numbers
 
-// function to format display with commas
-// warning: do not copy this format to displayNum
-const addComma = function(str1) {
-    // add logic to retain trailing decimal
-    if (str1[str1.length -1] === '.') {
-        let asNumber = +str1;
-        return asNumber.toLocaleString() + '.';
-    }
-    let asNumber = +str1;
-    return asNumber.toLocaleString();
-}
-
 // function for entering numbers
 const addNum = function(str1) {
-    // disable entry after overflow or divide by 0 error
-    if (display.innerText === 'Overflow' || display.innerText === 'Divide by 0 error') {
-        return;
-    }
     // patch for entry after = (not good practice)
     if (operation === undefined && displayNum === undefined) {
         storedNum = undefined;
@@ -40,7 +24,7 @@ const addNum = function(str1) {
         if (str1 === '.') {
             str1 = '0.';
         }
-        display.innerText = addComma(str1);
+        display.innerText = str1;
         displayNum = str1;
         return;
     }
@@ -55,7 +39,7 @@ const addNum = function(str1) {
         displayNum += str1;
         }
     }
-    display.innerText = addComma(displayNum);
+    display.innerText = displayNum;
 }
 
 // reset function for errors
@@ -81,7 +65,7 @@ const operate = function() {
                 reset();
                 break;
             }
-            display.innerText = addComma(answer);
+            display.innerText = answer;
             reset();
             storedNum = answer; // setup for another operation
             break;
@@ -96,7 +80,7 @@ const operate = function() {
                 if (answer.length > 16) {
                     answer = answer.slice(0,16);
                     }
-            display.innerText = addComma(answer);
+            display.innerText = answer;
             reset();
             storedNum = answer;
             break;
@@ -111,7 +95,7 @@ const operate = function() {
                 if (answer.length > 16) {
                     answer = answer.slice(0,16);
                     }
-            display.innerText = addComma(answer);
+            display.innerText = answer;
             reset();
             storedNum = answer;
             break;
@@ -131,7 +115,7 @@ const operate = function() {
             if (answer.length > 16) {
                 answer = answer.slice(0,16);
                 }
-            display.innerText = addComma(answer);
+            display.innerText = answer;
             reset();
             storedNum = answer;
             break;
@@ -179,10 +163,8 @@ const buttonResponse = function(e) {
                     displayNum = display.innerText;
                     break;
                 }
-                // have to remove commas for this to work
-                let noCommas = display.innerText.replaceAll(',','');
-                displayNum = noCommas.slice(0,-1);
-                display.innerText = addComma(displayNum);
+                display.innerText = display.innerText.slice(0,-1);
+                displayNum = display.innerText;
                 break;
             case '/':
                 addOperator(str1);

@@ -7,6 +7,38 @@ const buttons = document.querySelectorAll('button');
 // use toString() to change numbers to string
 // numbers with commas not recognized as numbers
 
+// function to format display with commas
+// warning: do not copy this format to displayNum
+const addComma = function(str1) {
+    console.log("top of comma");
+    // add logic to retain trailing decimal
+    if (str1[str1.length -1] === '.') {
+        console.log("trailing decimal");
+        let asNumber = +str1;
+        return asNumber.toLocaleString() + '.';
+    }
+    // add logic to retain trailing zeroes
+    let index = str1.length -1;
+       if (str1.includes('.') && str1[index] === '0') {
+          console.log('in trailing zero routine');
+          let pad = "";
+           while (str1[index] === '0') {
+                pad += '0';
+                index--;
+           }
+           if (str1[index] === '.') {
+            pad  = '.' + pad;
+           }
+        let num1 = +str1;
+        let answer1 = num1.toLocaleString();
+        return answer1 + pad;
+        }
+
+    let asNumber = +str1;
+    console.log("bottom of comma");
+    return asNumber.toLocaleString();
+}
+
 // function for entering numbers
 const addNum = function(str1) {
     // disable entry after overflow or divide by 0 error
@@ -28,7 +60,7 @@ const addNum = function(str1) {
         if (str1 === '.') {
             str1 = '0.';
         }
-        display.innerText = str1;
+        display.innerText = addComma(str1);
         displayNum = str1;
         return;
     }
@@ -43,7 +75,7 @@ const addNum = function(str1) {
         displayNum += str1;
         }
     }
-    display.innerText = displayNum;
+    display.innerText = addComma(displayNum);
 }
 
 // reset function for errors
@@ -69,7 +101,7 @@ const operate = function() {
                 reset();
                 break;
             }
-            display.innerText = answer;
+            display.innerText = addComma(answer);
             reset();
             storedNum = answer; // setup for another operation
             break;
@@ -84,7 +116,7 @@ const operate = function() {
                 if (answer.length > 16) {
                     answer = answer.slice(0,16);
                     }
-            display.innerText = answer;
+            display.innerText = addComma(answer);
             reset();
             storedNum = answer;
             break;
@@ -99,7 +131,7 @@ const operate = function() {
                 if (answer.length > 16) {
                     answer = answer.slice(0,16);
                     }
-            display.innerText = answer;
+            display.innerText = addComma(answer);
             reset();
             storedNum = answer;
             break;
@@ -119,7 +151,7 @@ const operate = function() {
             if (answer.length > 16) {
                 answer = answer.slice(0,16);
                 }
-            display.innerText = answer;
+            display.innerText = addComma(answer);
             reset();
             storedNum = answer;
             break;
@@ -167,8 +199,10 @@ const buttonResponse = function(e) {
                     displayNum = display.innerText;
                     break;
                 }
-                display.innerText = display.innerText.slice(0,-1);
-                displayNum = display.innerText;
+                // have to remove commas for this to work
+                let noCommas = display.innerText.replaceAll(',','');
+                displayNum = noCommas.slice(0,-1);
+                display.innerText = addComma(displayNum);
                 break;
             case '/':
                 addOperator(str1);
@@ -210,7 +244,7 @@ const buttonResponse = function(e) {
                 addOperator(str1);
                 break;
             case '0':
-                addNum('0');
+                addNum(str1);
                 break;
             case '.':
                 addNum(str1);

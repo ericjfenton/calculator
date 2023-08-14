@@ -45,11 +45,12 @@ Note for 19: check status of basic variables after = or second number
 19b. "- 1" displays 1. Pass
 19c. "x 2" display 4. Pass
 19d. "/ 2" displays 1. Pass
-20. Program includes method to display numbers over 999 with comma. Pass
-      (toLocaleString(), needed to add logic to retaining trailing decimal)
-21. Entry of "1234" displays 1,234. Pass
-22. Entry of "1234567" displays 1,234,567. Pass
+20. Program includes method to display numbers over 999 with comma. Omitted
+      (toLocaleString() works somewhat but side effects were tricky)
+21. Entry of "1234" displays 1,234. Fail
+22. Entry of "1234567" displays 1,234,567. Fail
 23. Entry of decimal displays in output area. Pass
 24. Second entry of decimal is ignored. Pass
 25. Entry of operators second time in a row is ignored. Passed
 26. Entry of equals without two operands and operator is ignored. Pass
+27. Retain trailing zeroes after decimal when converting to comma format. Fail

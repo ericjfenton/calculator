@@ -148,7 +148,7 @@ const buttonResponse = function(e) {
     if (btnType === 'btn' || btnType === 'wide') {
         let str1 = e.target.innerText;
         switch (str1) {
-            case 'Clear':
+            case 'C':
                 displayNum = '0';
                 storedNum = undefined;
                 operation = undefined;
